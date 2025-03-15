@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'CaviarDreams';
+    src: url('Font/CaviarDreams/CaviarDreams_Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes moveCheckerboard {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100px 100px;
+    }
+}
+
+* { user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EEEBD3;
+    font-family: 'CaviarDreams' ,Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 60px;
+
+    background-image: 
+    url('Images/Checkerboard.png');
+    background-size: 100px 100px;
+    animation: moveCheckerboard 4s linear infinite;
+    position: relative;
+
+}
+
+main {
+    font-family: 'CaviarDreams', Arial, Helvetica, sans-serif;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+main h2 {
+    color: black;
+}
+
+main p {
+    color: black;
+}
+
+header {
+    background-color: #255957;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'CaviarDreams', Arial, Helvetica, sans-serif;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+footer {
+    background-color: #255957;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'CaviarDreams', Arial, Helvetica, sans-serif;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+h1 { font-size: 30px;}
+p { font-size: 25px;}
+
+header h1, footer h1 {
+    color: #EEEBD3;
+}
+
+header p, footer p {
+    color: #EEEBD3;
+}
+
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    color: #EEEBD3;
+    background-color: #255957;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background: #255957;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    padding: 10px 15px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
