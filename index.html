@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karl Hideout - Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="Images/Star.ico">
 </head>
-
 <body>
     <!-- Preloader -->
     <div id="preloader">
-    <div class="spinner"></div>
-    <div class="tip-text">Tip: NOTHING IS REAL, HELP ME.</div>
-</div>
+        <div class="spinner"></div>
+        <div class="tip-text"></div>
+    </div>
 
     <!-- Main Content -->
     <div id="content" class="hidden">
         <header>
-            <div class="menu-icon" aria-label="Toggle menu" tabindex="0">☰</div>
+            <div class="menu-icon" aria-label="Toggle menu" tabindex="0" role="button">☰</div>
             <nav class="menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -30,8 +29,19 @@
         </header>
 
         <main>
-            <h2>Karl art showcase</h2>
-            <p></p>
+            <h2>Karl Art Showcase</h2>
+
+            <!-- Art Gallery -->
+            <div class="art-gallery">
+                <img id="art-image" src="Images/Art/Art-1.png" alt="Karl's Art">
+            </div>
+            <p class="art-note">Art changes every 5s. Enjoy!</p>
+
+            <!-- Modal for full-resolution image -->
+            <div id="image-modal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="modal-image">
+            </div>
         </main>
 
         <footer>
