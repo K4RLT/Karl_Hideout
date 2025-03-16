@@ -1,7 +1,39 @@
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #EEEBD3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top: 5px solid #255957;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
 @font-face {
     font-family: 'CaviarDreams';
     src: url('Font/CaviarDreams/CaviarDreams_Bold.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
 }
 
@@ -14,14 +46,12 @@
     }
 }
 
+
 * { user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-}
 
-
-* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -33,7 +63,6 @@ body {
     text-align: center;
     padding-top: 100px;
     padding-bottom: 60px;
-
     background-image: 
     url('Images/Checkerboard.png');
     background-size: 100px 100px;
@@ -51,10 +80,12 @@ main {
 
 main h2 {
     color: black;
+    font-size: clamp(25px, 3vw, 35px );
 }
 
 main p {
     color: black;
+    font-size: clamp(18px, 2vw, 24px);
 }
 
 header {
@@ -62,7 +93,7 @@ header {
     color: white;
     padding: 20px;
     text-align: center;
-    font-size: 25px;
+    font-size: clamp(18px, 2vw, 24px);
     font-family: 'CaviarDreams', Arial, Helvetica, sans-serif;
     position: fixed;
     top: 0;
@@ -74,7 +105,7 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
-    font-size: 15px;
+    font-size: clamp(20px, 2.5vw, 28px);
     font-family: 'CaviarDreams', Arial, Helvetica, sans-serif;
     position: fixed;
     bottom: 0;
@@ -82,8 +113,8 @@ footer {
 }
 
 
-h1 { font-size: 30px;}
-p { font-size: 25px;}
+h1 { font-size: clamp(26px, 4vw, 40px);}
+p { font-size: clamp(18px, 2.5vw, 22px);}
 
 header h1, footer h1 {
     color: #EEEBD3;
@@ -94,7 +125,7 @@ header p, footer p {
 }
 
 .menu-icon {
-    font-size: 30px;
+    font-size: clamp(22px, 4vw, 30px);
     cursor: pointer;
     position: fixed;
     top: 20px;
@@ -121,7 +152,7 @@ header p, footer p {
 .menu ul li a {
     color: white;
     text-decoration: none;
-    font-size: 15px;
+    font-size: clamp(14px, 2vw, 18px);
     display: block;
     padding: 10px 15px;
 }
@@ -130,4 +161,75 @@ header p, footer p {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.about-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 50px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.about-container p {
+    font-size: clamp(20px, 2.5vw, 35px);
+    line-height: 1.4;
+    color: #333;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 80px;
+        padding-bottom: 50px;
+    }
+
+    header {
+        padding: 12px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    footer {
+        padding: 10px;
+    }
+
+    .menu-icon {
+        font-size: 22px;
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding-top: 70px;
+        padding-bottom: 45px;
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    main h2 {
+        font-size: clamp(18px, 4vw, 24px);
+    }
+
+    main p {
+        font-size: clamp(16px, 3vw, 20px);
+    }
+
+    footer {
+        padding: 8px;
+    }
+
+    .menu-icon {
+        font-size: 20px;
+        padding: 6px 10px;
+    }
 }
