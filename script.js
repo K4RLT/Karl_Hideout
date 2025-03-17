@@ -102,17 +102,21 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(changeArt, 5000);
 
     artImageElement.addEventListener("click", function () {
-        modal.style.display = "block";
-        modalImage.src = artImages[currentIndex];
-    });
+    modal.style.display = "block";
+    modalImage.src = artImages[currentIndex];
+    disableScroll(); // ✅ Prevent scrolling
+});
+
 
     closeButton.addEventListener("click", function () {
         modal.style.display = "none";
+        enableScroll(); // ✅ Allow scrolling again
     });
 
     window.addEventListener("click", function (event) {
         if (event.target === modal) {
             modal.style.display = "none";
+            enableScroll(); // ✅ Allow scrolling again
         }
     });
 });
@@ -126,11 +130,14 @@ function changeArt() {
 
 function disableScroll() {
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden"; // Prevents scrolling in HTML root
 }
 
 function enableScroll() {
     document.body.style.overflow = "";
+    document.documentElement.style.overflow = ""; 
 }
+
 
 artImageElement.addEventListener("click", function () {
     modal.style.display = "block";
