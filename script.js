@@ -67,8 +67,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     menuIcon.addEventListener("click", function (event) {
         toggleMenu();
-        event.stopPropagation(); // Prevents click from propagating to the document
+    
+        // Add the spinning effect
+        menuIcon.classList.add("spin");
+    
+        // Remove the spin class after animation ends (so it can spin again on the next click)
+        setTimeout(() => {
+            menuIcon.classList.remove("spin");
+        }, 400); // Match animation duration
+    
+        event.stopPropagation();
     });
+    
 
     document.addEventListener("click", function (event) {
         if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {

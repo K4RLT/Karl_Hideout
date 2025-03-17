@@ -12,6 +12,15 @@
     z-index: 10000; /* Ensure it's above everything */
 }
 
+/* Disable text selection for the entire page */
+* {
+    user-select: none; /* Prevents text selection */
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For older versions of IE */
+}
+
+
 .hidden {
     display: none;
 }
@@ -85,6 +94,102 @@ body {
     position: relative;
 }
 
+/* For the main content on the index page */
+.index-page {
+    background-color: #EEEBD3; /* Specific background for index page */
+    /* Any other styles for the art showcase section */
+}
+
+/* For the second content section */
+.extra-content {
+    background-color: #fff; /* A different background for the extra content */
+    padding: 20px;
+}
+/* Art Archive Section */
+.art-archive {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between sections */
+    padding: 20px;
+    background-color: #fff; /* Unified background */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow around the whole section */
+    border-radius: 10px; /* Optional rounded corners for the whole archive */
+}
+
+.extra-content {
+    padding: 20px;
+}
+
+.extra-content h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #3D2C2E; /* Your title color */
+    margin-bottom: 20px;
+}
+
+.extra-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Image shadow */
+}
+
+/* Optionally, you can add hover effects or other animations */
+.extra-content:hover {
+    background-color: #f7f7f7;
+}
+
+.extra-content img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+.about-page {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #EEEBD3;
+    margin-top: 20px;
+}
+
+.about-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.about-container h2 {
+    font-size: 2rem;
+    color: #437C90;
+    font-weight: 600;
+}
+
+.about-content {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1rem;
+    color: #777;
+}
+
+
+
 /* Main Content */
 main {
     font-family: 'CaviarDreams', Arial, Helvetica, sans-serif;
@@ -92,7 +197,6 @@ main {
     padding: 20px;
     padding-bottom: 80px; /* Prevent footer overlap */
     text-align: center;
-    background-color: #EEEBD3; /* Light beige background */
 }
 
 main h2 {
@@ -144,37 +248,47 @@ p {
     color: #EEEBD3; /* Light beige for text */
 }
 
-/* Menu Icon */
-.menu-icon {
-    font-size: clamp(22px, 4vw, 30px);
-    cursor: pointer;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    color: #EEEBD3; /* Light beige for icon */
-    background-color: #255957; /* Dark teal for background */
-    padding: 10px 15px;
-    border-radius: 5px;
-    user-select: none;
+@keyframes spinOnce {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-/* Dropdown Menu */
+.menu-icon.spin {
+    animation: spinOnce 1s ease-out;
+}
+
+
+/* Burger Menu Styling */
+.menu-icon {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 40px;
+    height: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+/* Smooth dropdown */
 .menu {
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    transform: translateY(-10px);
     position: fixed;
     top: 60px;
     right: 20px;
-    background: #255957; /* Dark teal for menu */
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    min-width: 120px;
-    z-index: 1000;
+    background: rgba(60, 60, 60, 0.9); /* Dark transparent */
+    padding: 12px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .menu.active {
@@ -184,18 +298,30 @@ p {
     transform: translateY(0);
 }
 
-.menu ul li a {
-    color: #EEEBD3; /* Light beige for text */
-    text-decoration: none;
-    font-size: clamp(14px, 2vw, 18px);
-    display: block;
-    padding: 10px 15px;
-}
-
+/* Style links */
 .menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.menu ul li {
+    margin: 8px 0;
+}
+
+.menu ul li a {
+    color: #EEEBD3;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 12px;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+
+.menu ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
 }
 
 /* Art Gallery Styles */
@@ -247,6 +373,23 @@ p {
     border-radius: 10px;
 }
 
+.social-container-background {
+    background: linear-gradient(to bottom, rgba(240, 248, 255, 1), rgba(240, 248, 255, 0)); /* Fades to transparent */
+    padding: 30px;
+    border-radius: 15px;
+    width: 50%;
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Prevents weird overflow issues */
+}
+
+
+.social-container-background h1 {
+    color: #3D2C2E; /* Change this to your desired color */
+}
+
+
 /* About Container */
 .about-container {
     background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
@@ -282,7 +425,7 @@ p {
     width: 100%;             /* Make it take up the full container width */
     max-width: 400px;        /* Set a maximum width to prevent it from becoming too wide */
     padding: 15px;
-    background-color: #f5f0e1; /* Light warm beige */
+    background-color: #EEEBD3; /* Light warm beige */
     border-radius: 10px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -290,22 +433,77 @@ p {
     color: #333;
     position: relative;
     border: 2px solid rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Profile Picture - Fully Outside the Container */
+/* Set the color of <h1> for all social cards to the platform's specific color */
+
+/* Twitter */
+.social-card.twitter h1 {
+    color: #1DA1F2; /* Twitter color */
+}
+
+/* Instagram - use Instagram's color (example) */
+.social-card.instagram h1 {
+    color: #E4405F; /* Instagram color */
+}
+
+/* TikTok */
+.social-card.tiktok h1 {
+    color: #c9265c; /* TikTok color */
+}
+
+/* Roblox */
+.social-card.roblox h1 {
+    color: #c52626; /* Roblox color */
+}
+
+/* Steam */
+.social-card.steam h1 {
+    color: #008B8B; /* Steam color */
+}
+
+/* GitHub */
+.social-card.github h1 {
+    color: #333333; /* GitHub color (dark gray) */
+}
+
+
+/* Profile Picture */
 .profile-pic {
-    width: 70px; /* Bigger so it sticks out properly */
+    width: 70px; /* Default size */
     height: 70px;
     object-fit: cover;
     position: absolute;
     top: -35px;  /* Moves it fully outside */
     left: -35px; /* Moves it fully outside */
-    border: 2px solid white; /* Outline */
-    background-color: #ddd; /* In case of transparent images */
+    border: 2px solid white;
+    background-color: #ddd;
     transform: rotate(var(--pic-rotation));
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-    z-index: 10; /* Ensures it's always above */
+    z-index: 10;
 }
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+    .profile-pic {
+        width: 50px; /* Smaller profile picture on mobile */
+        height: 50px; /* Smaller profile picture on mobile */
+        top: -25px; /* Adjust position */
+        left: -25px; /* Adjust position */
+    }
+}
+
+/* Optional: Even smaller size for very small screens */
+@media (max-width: 480px) {
+    .profile-pic {
+        width: 40px; /* Even smaller size for small screens */
+        height: 40px; /* Even smaller size for small screens */
+        top: -20px; /* Adjust position */
+        left: -20px; /* Adjust position */
+    }
+}
+
 
 /* Random Profile Picture Rotation */
 .twitter .profile-pic { --pic-rotation: -10deg; }
@@ -334,8 +532,15 @@ p {
     transition: background 0.3s;
 }
 
-.social-btn:hover {
-    background-color: #555;
+/* First row tilts left, second row tilts right, then loops */
+.social-card:nth-child(odd):hover {
+    transform: rotate(5deg) scale(1.05); /* Tilts left */
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.social-card:nth-child(even):hover {
+    transform: rotate(-5deg) scale(1.05); /* Tilts right */
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 
