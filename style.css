@@ -258,6 +258,88 @@ p {
     text-align: center;
 }
 
+/* Social Links */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Social Container */
+.social-container {
+    display: flex;
+    flex-direction: column;  /* Stack items vertically */
+    align-items: center;     /* Center the items */
+    gap: 30px;               /* Adjust the gap between the cards */
+    margin-top: 30px;
+    width: 100%;             /* Ensure the container takes up full width */
+}
+
+/* Social Cards */
+.social-card {
+    width: 100%;             /* Make it take up the full container width */
+    max-width: 400px;        /* Set a maximum width to prevent it from becoming too wide */
+    padding: 15px;
+    background-color: #f5f0e1; /* Light warm beige */
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    position: relative;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Picture - Fully Outside the Container */
+.profile-pic {
+    width: 70px; /* Bigger so it sticks out properly */
+    height: 70px;
+    object-fit: cover;
+    position: absolute;
+    top: -35px;  /* Moves it fully outside */
+    left: -35px; /* Moves it fully outside */
+    border: 2px solid white; /* Outline */
+    background-color: #ddd; /* In case of transparent images */
+    transform: rotate(var(--pic-rotation));
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* Ensures it's always above */
+}
+
+/* Random Profile Picture Rotation */
+.twitter .profile-pic { --pic-rotation: -10deg; }
+.instagram .profile-pic { --pic-rotation: 16deg; }
+.tiktok .profile-pic { --pic-rotation: -12deg; }
+.roblox .profile-pic { --pic-rotation: 8deg; }
+.steam .profile-pic { --pic-rotation: -6deg; }
+.github .profile-pic { --pic-rotation: 5deg; }
+
+/* Username */
+.social-card p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Visit Profile Button */
+.social-btn {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 8px 12px;
+    background-color: #333;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.social-btn:hover {
+    background-color: #555;
+}
+
+
+
 .close {
     position: absolute;
     top: 20px;
