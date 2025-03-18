@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("content").classList.remove("hidden");
     }
 
-    // ✅ MENU TOGGLE FUNCTIONALITY (Fixed Version)
+    // ✅ MENU TOGGLE FUNCTIONALITY
     const menuIcon = document.querySelector(".menu-icon");
     const menu = document.querySelector(".menu");
 
@@ -67,18 +67,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     menuIcon.addEventListener("click", function (event) {
         toggleMenu();
-    
+
         // Add the spinning effect
         menuIcon.classList.add("spin");
-    
-        // Remove the spin class after animation ends (so it can spin again on the next click)
+
+        // Remove the spin class after animation ends
         setTimeout(() => {
             menuIcon.classList.remove("spin");
-        }, 400); // Match animation duration
-    
+        }, 400);
+
         event.stopPropagation();
     });
-    
 
     document.addEventListener("click", function (event) {
         if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
@@ -90,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.stopPropagation();
     });
 
-    // ✅ ART GALLERY LOGIC
+    // ✅ ART GALLERY LOGIC (WITH PREV/NEXT BUTTONS)
     const artImages = [
         "Images/Art/Art-1.png",
         "Images/Art/Art-2.png",
@@ -102,90 +101,81 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("image-modal");
     const modalImage = document.getElementById("modal-image");
     const closeButton = document.querySelector(".close");
+    const prevButton = document.getElementById("prev"); // New
+    const nextButton = document.getElementById("next"); // New
     let currentIndex = 0;
 
-    function changeArt() {
-        currentIndex = (currentIndex + 1) % artImages.length;
+    function changeArt(next = true) {
+        if (next) {
+            currentIndex = (currentIndex + 1) % artImages.length;
+        } else {
+            currentIndex = (currentIndex - 1 + artImages.length) % artImages.length;
+        }
         artImageElement.src = artImages[currentIndex];
     }
 
-    setInterval(changeArt, 5000);
+    // Auto-change image every 5 seconds
+    setInterval(() => changeArt(true), 5000);
 
+    // Click image to open modal
     artImageElement.addEventListener("click", function () {
-    modal.style.display = "block";
-    modalImage.src = artImages[currentIndex];
-    disableScroll(); // ✅ Prevent scrolling
-});
+        modal.style.display = "block";
+        modalImage.src = artImages[currentIndex];
+        disableScroll();
+    });
 
-
+    // Close modal
     closeButton.addEventListener("click", function () {
         modal.style.display = "none";
-        enableScroll(); // ✅ Allow scrolling again
+        enableScroll();
     });
 
     window.addEventListener("click", function (event) {
         if (event.target === modal) {
             modal.style.display = "none";
-            enableScroll(); // ✅ Allow scrolling again
+            enableScroll();
         }
     });
+
+    // ✅ PREV/NEXT BUTTON FUNCTIONALITY
+    prevButton.addEventListener("click", function () {
+        changeArt(false);
+    });
+
+    nextButton.addEventListener("click", function () {
+        changeArt(true);
+    });
+
+    // ✅ DISABLE RIGHT CLICK ON IMAGES
+    document.addEventListener("contextmenu", function (event) {
+        if (event.target.tagName === "IMG") {
+            event.preventDefault();
+            alert("MEOW >:3");
+        }
+    });
+
+    // ✅ PREVENT DEV TOOLS ACCESS
+    document.onkeydown = function (event) {
+        if (
+            event.keyCode === 123 || // F12
+            (event.ctrlKey && event.shiftKey && event.keyCode === 73) || // Ctrl+Shift+I
+            (event.ctrlKey && event.shiftKey && event.keyCode === 74) || // Ctrl+Shift+J
+            (event.ctrlKey && event.keyCode === 85) // Ctrl+U
+        ) {
+            alert("MEOW>:3");
+            return false;
+        }
+    };
 });
 
-function changeArt() {
-    if (artImages.length > 0) {
-        currentIndex = (currentIndex + 1) % artImages.length;
-        artImageElement.src = artImages[currentIndex];
-    }
-}
-
+// ✅ SCROLL LOCK FUNCTIONS
 function disableScroll() {
     document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden"; // Prevents scrolling in HTML root
+    document.documentElement.style.overflow = "hidden"; 
 }
 
 function enableScroll() {
     document.body.style.overflow = "";
     document.documentElement.style.overflow = ""; 
 }
-
-
-artImageElement.addEventListener("click", function () {
-    modal.style.display = "block";
-    modalImage.src = artImages[currentIndex];
-    disableScroll();
-});
-
-closeButton.addEventListener("click", function () {
-    modal.style.display = "none";
-    enableScroll();
-});
-
-window.addEventListener("click", function (event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-        enableScroll();
-    }
-});
-
-
-// PREVENT IMAGE DOWNLOAD
-document.addEventListener("contextmenu", function (event) {
-    if (event.target.tagName === "IMG") {
-        event.preventDefault();
-        alert("Image downloading is disabled.");
-    }
-});
-
-// PREVENT DEV TOOLS ACCESS
-document.onkeydown = function (event) {
-    if (
-        event.keyCode === 123 || // F12
-        (event.ctrlKey && event.shiftKey && event.keyCode === 73) || // Ctrl+Shift+I
-        (event.ctrlKey && event.shiftKey && event.keyCode === 74) || // Ctrl+Shift+J
-        (event.ctrlKey && event.keyCode === 85) // Ctrl+U
-    ) {
-        alert("Console access is disabled.");
-        return false;
-    }
-};
 

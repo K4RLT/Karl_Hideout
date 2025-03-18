@@ -17,14 +17,16 @@
     <!-- Main Content -->
     <div id="content" class="hidden">
         <header>
-            <div class="menu-icon" aria-label="Toggle menu" tabindex="0" role="button">🟄</div>
-            <nav class="menu">
+            <div class="menu-icon">
+                <span>𐰁</span>
+            </div>
+            <div class="menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="social.html">Socials</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
-            </nav>
+            </div>
             <h1>Karl's Hideout</h1>
         </header>
 
@@ -33,9 +35,16 @@
             <p>Scroll down to see my art archive</p>
         
             <!-- Art Gallery -->
-            <div class="art-gallery">
-                <img id="art-image" src="Images/Art/Art-1.png" alt="Karl's Art">
+            <div class="art-gallery-container">
+                <button id="prev" class="nav-button">&lt;</button>
+                <div class="art-gallery">
+                    <img id="art-image" src="Images/Art/Art-1.png" alt="Karl's Art">
+                </div>
+                <button id="next" class="nav-button">&gt;</button>
             </div>
+            
+
+
             <p class="art-note">Click to view full Images</p>
             <p class="art-note">Art changes every 5s. Enjoy!</p>
         
