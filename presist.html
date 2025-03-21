@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karl Hideout - Persist</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Images/Star.ico">
+</head>
+
+<body class="persist-page">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+        <div class="tip-text"></div> <!-- For random tips -->
+    </div>
+
+    <!-- Main Content -->
+    <div id="content" class="hidden">
+        <header>
+            <div class="menu-icon">
+                <span>𐰁</span>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="social.html">Socials</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <h1>Never Stop Drawing</h1>
+        </header>
+
+        <!-- Animated Book-Drop Effect -->
+        <main class="page-container">
+            <div class="left-page">
+                <h1>Never stop Drawing</h1>
+                <p class="quote">"Every artist was first an amateur." – Ralph Waldo Emerson</p>
+            </div>
+
+            <div class="right-page">
+                <!-- Bookmark -->
+                <div class="bookmark" onclick="toggleContent()"></div>
+
+                <!-- First Content -->
+                <div class="content" id="content1">
+                    <h2>My Struggles</h2>
+                    <p>There were times I felt like giving up. My hands weren’t fast enough, my lines were messy, and I felt stuck. But I kept pushing.</p>
+                    <p>Every failed sketch was still a step forward. Every mistake taught me something new. I learned that persistence is what truly makes an artist.</p>
+                </div>
+
+                <!-- Second Content (Hidden by Default) -->
+                <div class="content hidden" id="content2">
+                    <h2>My Inspirations</h2>
+                    <p>Artists like Sophie and Melanie Martinez inspired me to create art that tells a story. Their music taught me that emotions can be expressed in unique ways.</p>
+                    <p>My dream is to create art that resonates deeply with others, just as their work resonates with me.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Karl | All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -6,88 +6,60 @@ document.addEventListener("DOMContentLoaded", function () {
         { category: "Pro Tip", message: "Customize your workspace! ヽ(✿ﾟ▽ﾟ)ノ" },
         { category: "Did You Know?", message: "Karl’s favorite animal? TIGERR! (＾• ω •＾)" },
         { category: "Tip", message: "Slow and steady wins the race. (￣▽￣)ノ" },
-        { category: "Pro Tip", message: "Try new tools and ideas! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧" },
-        { category: "Did You Know?", message: "Karl’s inspired by music. ♪(´▽｀)" },
-        { category: "Tip", message: "Small steps, big wins. (•̀ᴗ•́)و ̑̑" },
-        { category: "Pro Tip", message: "Practice makes progress. (๑•̀ㅂ•́)و✧" },
-        { category: "Did You Know?", message: "Karl loves digital painting. (´｡• ᵕ •｡`)" },
-        { category: "Tip", message: "Celebrate creativity! (ﾉ´ヮ`)ﾉ*: ･ﾟ" },
-        { category: "Pro Tip", message: "Draw daily to improve. (๑˃ᴗ˂)ﻭ" },
-        { category: "Did You Know?", message: "Karl’s favorite artist? Aurora. ♪(^∇^*)" },
-        { category: "Tip", message: "Art reflects emotions. (｡♥‿♥｡)" },
-        { category: "Pro Tip", message: "Mistakes are part of the process. (๑•́ ₃ •̀๑)" },
-        { category: "Did You Know?", message: "Karl’s favorite season? Autumn. (˶ᵔ ᵕ ᵔ˶)" },
-        { category: "Tip", message: "Art tells a story. (｡◕‿◕｡)" },
-        { category: "Pro Tip", message: "Take breaks to refresh. (￣ω￣)" },
-        { category: "Did You Know?", message: "Karl’s favorite quote? 'Art is what you make others see.' (✿◠‿◠)" },
-        { category: "Tip", message: "Inspired by nature and music. (ﾉ´ヮ`)ﾉ*: ･ﾟ" },
-        { category: "Pro Tip", message: "Use references—it’s not cheating! (๑•̀ㅂ•́)و✧" },
-        { category: "Did You Know?", message: "Karl’s favorite colors? Blues and purples. (´｡• ᵕ •｡`)" },
-        { category: "Tip", message: "Join Karl’s creative journey! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧" },
-        { category: "Pro Tip", message: "Keep a sketchbook. (๑˃ᴗ˂)ﻭ" },
-        { category: "Did You Know?", message: "Karl’s favorite part? Sketching. (✿´‿`)" },
-        { category: "Tip", message: "Blend traditional and digital art. (ﾉ´ヮ`)ﾉ*: ･ﾟ" },
-        { category: "Pro Tip", message: "Share your art for feedback. (｡♥‿♥｡)" },
-        { category: "Did You Know?", message: "Karl’s favorite subject? (＾• ω •＾)" },
-        { category: "Tip", message: "Embrace your unique self. (✿◠‿◠)" },
-        { category: "Pro Tip", message: "Set small goals to stay motivated. (•̀ᴗ•́)و ̑̑" },
-        { category: "Did You Know?", message: "Karl’s art celebrates nature. (˶ᵔ ᵕ ᵔ˶)" },
-        { category: "Tip", message: "Creativity meets technology. (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧" },
-        { category: "Pro Tip", message: "Don’t compare your art to others. (๑•́ ₃ •̀๑)" },
-        { category: "Did You Know?", message: "Karl’s advice? Don’t fear mistakes. (๑•̀ㅂ•́)و✧" },
-        { category: "Tip", message: "Celebrate life through art. (ﾉ´ヮ`)ﾉ*: ･ﾟ" }
+        { category: "Pro Tip", message: "Try new tools and ideas! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧" }
     ];
 
-    if (!firstVisit) {
-        document.getElementById("preloader").style.display = "flex";
-        document.getElementById("content").classList.add("hidden");
+    const preloader = document.getElementById("preloader");
+    const content = document.getElementById("content");
+    const tipText = document.querySelector(".tip-text");
 
-        const tipText = document.querySelector(".tip-text");
-        const randomTip = tips[Math.floor(Math.random() * tips.length)];
-        tipText.setAttribute("data-category", randomTip.category);
-        tipText.textContent = randomTip.message;
+    if (preloader && content && tipText) {
+        if (!firstVisit) {
+            preloader.style.display = "flex";
+            content.classList.add("hidden");
 
-        setTimeout(() => {
-            document.getElementById("preloader").style.display = "none";
-            document.getElementById("content").classList.remove("hidden");
-            sessionStorage.setItem("firstVisit", "true");
-        }, 5000);
-    } else {
-        document.getElementById("preloader").style.display = "none";
-        document.getElementById("content").classList.remove("hidden");
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipText.setAttribute("data-category", randomTip.category);
+            tipText.textContent = randomTip.message;
+
+            setTimeout(() => {
+                preloader.style.display = "none";
+                content.classList.remove("hidden");
+                sessionStorage.setItem("firstVisit", "true");
+            }, 5000);
+        } else {
+            preloader.style.display = "none";
+            content.classList.remove("hidden");
+        }
     }
 
     // ✅ MENU TOGGLE FUNCTIONALITY
     const menuIcon = document.querySelector(".menu-icon");
     const menu = document.querySelector(".menu");
 
-    function toggleMenu() {
-        menu.classList.toggle("active");
-    }
-
-    menuIcon.addEventListener("click", function (event) {
-        toggleMenu();
-
-        // Add the spinning effect
-        menuIcon.classList.add("spin");
-
-        // Remove the spin class after animation ends
-        setTimeout(() => {
-            menuIcon.classList.remove("spin");
-        }, 400);
-
-        event.stopPropagation();
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
-            menu.classList.remove("active");
+    if (menuIcon && menu) {
+        function toggleMenu() {
+            menu.classList.toggle("active");
         }
-    });
 
-    menu.addEventListener("click", function (event) {
-        event.stopPropagation();
-    });
+        menuIcon.addEventListener("click", function (event) {
+            toggleMenu();
+
+            menuIcon.classList.add("spin");
+            setTimeout(() => menuIcon.classList.remove("spin"), 400);
+            event.stopPropagation();
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+                menu.classList.remove("active");
+            }
+        });
+
+        menu.addEventListener("click", function (event) {
+            event.stopPropagation();
+        });
+    }
 
     // ✅ ART GALLERY LOGIC (WITH PREV/NEXT BUTTONS)
     const artImages = [
@@ -101,50 +73,78 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("image-modal");
     const modalImage = document.getElementById("modal-image");
     const closeButton = document.querySelector(".close");
-    const prevButton = document.getElementById("prev"); // New
-    const nextButton = document.getElementById("next"); // New
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+
     let currentIndex = 0;
 
     function changeArt(next = true) {
-        if (next) {
-            currentIndex = (currentIndex + 1) % artImages.length;
-        } else {
-            currentIndex = (currentIndex - 1 + artImages.length) % artImages.length;
+        if (artImageElement) {
+            if (next) {
+                currentIndex = (currentIndex + 1) % artImages.length;
+            } else {
+                currentIndex = (currentIndex - 1 + artImages.length) % artImages.length;
+            }
+            artImageElement.src = artImages[currentIndex];
         }
-        artImageElement.src = artImages[currentIndex];
     }
 
-    // Auto-change image every 5 seconds
-    setInterval(() => changeArt(true), 5000);
+    if (artImageElement) {
+        setInterval(() => changeArt(true), 5000);
 
-    // Click image to open modal
-    artImageElement.addEventListener("click", function () {
-        modal.style.display = "block";
-        modalImage.src = artImages[currentIndex];
-        disableScroll();
-    });
+        artImageElement.addEventListener("click", function () {
+            if (modal && modalImage) {
+                modal.style.display = "block";
+                modalImage.src = artImages[currentIndex];
+                disableScroll();
+            }
+        });
+    }
 
-    // Close modal
-    closeButton.addEventListener("click", function () {
-        modal.style.display = "none";
-        enableScroll();
-    });
+    if (closeButton) {
+        closeButton.addEventListener("click", function () {
+            if (modal) {
+                modal.style.display = "none";
+                enableScroll();
+            }
+        });
+    }
 
-    window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-            enableScroll();
+    if (modal) {
+        window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                enableScroll();
+            }
+        });
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener("click", function () {
+            changeArt(false);
+        });
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener("click", function () {
+            changeArt(true);
+        });
+    }
+
+    // ✅ TOGGLE CONTENT FUNCTION
+    function toggleContent() {
+        let content1 = document.getElementById("content1");
+        let content2 = document.getElementById("content2");
+        let bookmark = document.querySelector(".bookmark");
+
+        if (content1 && content2 && bookmark) {
+            content1.classList.toggle("hidden");
+            content2.classList.toggle("hidden");
+
+            bookmark.classList.add("clicked");
+            setTimeout(() => bookmark.classList.remove("clicked"), 500);
         }
-    });
-
-    // ✅ PREV/NEXT BUTTON FUNCTIONALITY
-    prevButton.addEventListener("click", function () {
-        changeArt(false);
-    });
-
-    nextButton.addEventListener("click", function () {
-        changeArt(true);
-    });
+    }
 
     // ✅ DISABLE RIGHT CLICK ON IMAGES
     document.addEventListener("contextmenu", function (event) {
@@ -157,25 +157,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // ✅ PREVENT DEV TOOLS ACCESS
     document.onkeydown = function (event) {
         if (
-            event.keyCode === 123 || // F12
-            (event.ctrlKey && event.shiftKey && event.keyCode === 73) || // Ctrl+Shift+I
-            (event.ctrlKey && event.shiftKey && event.keyCode === 74) || // Ctrl+Shift+J
-            (event.ctrlKey && event.keyCode === 85) // Ctrl+U
+            event.keyCode === 123 || 
+            (event.ctrlKey && event.shiftKey && event.keyCode === 73) ||
+            (event.ctrlKey && event.shiftKey && event.keyCode === 74) ||
+            (event.ctrlKey && event.keyCode === 85)
         ) {
             alert("MEOW>:3");
             return false;
         }
     };
+
+    // ✅ SCROLL LOCK FUNCTIONS
+    function disableScroll() {
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden"; 
+    }
+
+    function enableScroll() {
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = ""; 
+    }
 });
-
-// ✅ SCROLL LOCK FUNCTIONS
-function disableScroll() {
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden"; 
-}
-
-function enableScroll() {
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = ""; 
-}
-

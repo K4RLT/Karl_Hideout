@@ -20,29 +20,6 @@
     -ms-user-select: none; /* For older versions of IE */
 }
 
-@keyframes pawRain {
-    from {
-        transform: translateY(-10vh);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-}
-
-.paw {
-    position: absolute;
-    width: 30px; /* Adjust size */
-    height: 30px;
-    background-image: url('Images/paw.png'); /* Make sure you have a paw print image */
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.8;
-    pointer-events: none; /* So it doesn’t block interactions */
-    animation: pawRain linear infinite;
-}
-
 
 .hidden {
     display: none;
@@ -169,7 +146,7 @@ body {
 
 
 .about-page {
-    background-color: #f9f9f9;
+    background-color: #EEEBD3;
     color: #333;
 }
 
@@ -301,13 +278,6 @@ p {
 .wave-text span:nth-child(14) { animation-delay: 1.3s; }
 .wave-text span:nth-child(15) { animation-delay: 1.4s; }
 .wave-text span:nth-child(16) { animation-delay: 1.5s; }
-.wave-text span:nth-child(17) { animation-delay: 1.6s; }
-.wave-text span:nth-child(18) { animation-delay: 1.7s; }
-.wave-text span:nth-child(19) { animation-delay: 1.8s; }
-.wave-text span:nth-child(20) { animation-delay: 1.9s; }
-.wave-text span:nth-child(21) { animation-delay: 2s; }
-.wave-text span:nth-child(22) { animation-delay: 2.1s; }
-.wave-text span:nth-child(23) { animation-delay: 2.2s; }
 
 @keyframes spinOnce {
     from {
@@ -318,7 +288,6 @@ p {
     }
 }
 
-/* Paw Print Menu Icon */
 .menu-icon {
     position: fixed;
     top: 20px;
